@@ -1,0 +1,32 @@
+@CHARSET "ISO-8859-1";
+
+.menuFormat {
+	background-color:#FF0000;
+	font-size: medium;
+	text-align: center;
+	font-stretch: wider;
+}
+
+.link {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: medium;
+	color: white;
+}
+
+#fileSelectDiv {
+	width:			100%;
+	background-color:#FFFFCC;
+}
+
+.fileComboBoxFormat {
+	width:250px;
+}
+
+.selectFilecomboBoxFormat {
+	width:250px;
+}
+
+.queryFieldcomboBoxFormat {
+	width:125px;
+}

@@ -3,7 +3,8 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="vHELP-JITDispatch">
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="war" name="vHELP-JITDispatch">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
@@ -45,46 +46,29 @@
         <pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/log4j.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/ojdbc14.jar"/>
-       
         <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
         <pathelement location="WebContent/WEB-INF/lib/tools.jar"/>
     </path>
-    <target name="init">
-        <mkdir dir="build/classes"/>
-        <copy includeemptydirs="false" todir="build/classes">
-            <fileset dir="src">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
+              	
     <target name="clean">
-        <delete dir="build/classes"/>
+        <delete dir="WebContent/WEB-INF/classes"/>
+    	 <delete dir="deploy"/>
     </target>
-    <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project" name="build"/>
-    <target name="build-subprojects"/>
-    <target depends="init" name="build-project">
-        <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+              	
+    <target name="build" depends="clean">
+    	<mkdir dir="WebContent/WEB-INF/classes"/>
+        <javac memoryinitialsize="256M" memorymaximumsize="512M" debug="true" debuglevel="${debuglevel}" destdir="WebContent/WEB-INF/classes" includeantruntime="false" source="${source}" target="${target}" fork="true">
             <src path="src"/>
             <classpath refid="vHELP-JITDispatch.classpath"/>
         </javac>
+    	  	    
     </target>
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-              	<target name="war" description="Bundles the application as a WAR file" depends="clean, build">
-              	              	    <mkdir dir="WebContent/WEB-INF/classes"/>
-              	              	     
-              	              	    <copy includeemptydirs="false" todir="WebContent/WEB-INF/classes">
-              	              	            <fileset dir="build/classes">
-              	              	            <include name="**/*.class"/>
-              	              	            </fileset>
-              	              	    </copy>
-              	              	     
-              	              	    <war destfile="vHELP-JITDispatch.war"
-              	              	        basedir="WebContent"
-              	              	        needxmlfile="false">
-              	              	    </war>
-              	              	</target>
+	
+	<target name="war" depends="build">
+		<war destfile="deploy/vHELP-JITDispatch.war"
+		    	  	        basedir="WebContent"
+		    	  	        >
+		  </war>
+	</target>
 
 </project>

@@ -16,27 +16,27 @@
     </path>
     <path id="EAR Libraries.libraryclasspath"/>
     <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
-        <pathelement location="../../Downloads/lib/annotations-api.jar"/>
-        <pathelement location="../../Downloads/lib/catalina-ant.jar"/>
-        <pathelement location="../../Downloads/lib/catalina-ha.jar"/>
-        <pathelement location="../../Downloads/lib/catalina-tribes.jar"/>
-        <pathelement location="../../Downloads/lib/catalina.jar"/>
-        <pathelement location="../../Downloads/lib/ecj-4.2.2.jar"/>
-        <pathelement location="../../Downloads/lib/el-api.jar"/>
-        <pathelement location="../../Downloads/lib/jasper-el.jar"/>
-        <pathelement location="../../Downloads/lib/jasper.jar"/>
-        <pathelement location="../../Downloads/lib/jsp-api.jar"/>
-        <pathelement location="../../Downloads/lib/servlet-api.jar"/>
-        <pathelement location="../../Downloads/lib/tomcat-api.jar"/>
-        <pathelement location="../../Downloads/lib/tomcat-coyote.jar"/>
-        <pathelement location="../../Downloads/lib/tomcat-dbcp.jar"/>
-        <pathelement location="../../Downloads/lib/tomcat-i18n-es.jar"/>
-        <pathelement location="../../Downloads/lib/tomcat-i18n-fr.jar"/>
-        <pathelement location="../../Downloads/lib/tomcat-i18n-ja.jar"/>
-        <pathelement location="../../Downloads/lib/tomcat-jdbc.jar"/>
-        <pathelement location="../../Downloads/lib/tomcat-util.jar"/>
-        <pathelement location="../../Downloads/lib/tomcat7-websocket.jar"/>
-        <pathelement location="../../Downloads/lib/websocket-api.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/annotations-api.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/catalina-ant.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/catalina-ha.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/catalina-tribes.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/catalina.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/ecj-4.2.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/el-api.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jasper-el.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jasper.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jsp-api.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/servlet-api.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-api.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-coyote.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-dbcp.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-jdbc.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-util.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat7-websocket.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/websocket-api.jar"/>
     </path>
     <path id="vHELP-JITDispatch.classpath">
         <pathelement location="build/classes"/>
@@ -45,7 +45,7 @@
         <pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/log4j.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/ojdbc14.jar"/>
-        <pathelement location="../../Downloads/apache-ant-1.7.1-src.zip"/>
+       
         <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
         <pathelement location="WebContent/WEB-INF/lib/tools.jar"/>
     </path>

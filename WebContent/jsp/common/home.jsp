@@ -16,7 +16,7 @@
 			</tr>
 			<tr>
 				<td>
-					<H3> <u> Salient Features: </u> </H3>					
+					<H3> <u> Salient Feature(s): </u> </H3>					
 					<ol>
 						<LI> It allows you to raise a request for equipment installation or repair
 					</ol>

@@ -32,7 +32,7 @@
 	        <br><br>
             <table width="300px" height="50px" align="center" border="0">
 				<tr>
-					<td> Enter Username </td>
+					<td> Enter User Name </td>
 					<td> <input type="text" name="userName" id="userNameID" width="1000px"> </td>
 				</tr>
 				<tr>

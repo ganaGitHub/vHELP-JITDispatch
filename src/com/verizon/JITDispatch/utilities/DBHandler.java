@@ -20,8 +20,8 @@ public class DBHandler {
 	public DBHandler() {
 		driver = "oracle.jdbc.driver.OracleDriver";
 		url = "jdbc:oracle:thin:@ipisacgda01.ebiz.verizon.com:1313:sacgda01";
-		user = "scrubitonboard";
-		pwd = "Test$1010";
+		user = "scrubit1";
+		pwd = "scrubit1";
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {

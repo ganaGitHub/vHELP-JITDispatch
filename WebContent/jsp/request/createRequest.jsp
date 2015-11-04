@@ -71,9 +71,9 @@
 	                    </td>
 	                    <td>
 	                    <% if (reqflag == "no") {%>
-	                    	<input type = "button" id="assignID" name="assignName" value="Need Help" onClick="assign();"/>
+	                    	<input type = "button" id="assignID" name="assignName" class="buttonFormat" value="Need Help" onClick="assign();"/>
 						<%} else { %>	                    	
-							<input type = "button" id="cancelID" name="cancelName" value="Cancel Request" onClick="cancel();"/>
+							<input type = "button" id="cancelID" name="cancelName" class="buttonFormat" value="Cancel Request" onClick="cancel();"/>
 						<%} %>
 	                    </td>
 	                </tr>

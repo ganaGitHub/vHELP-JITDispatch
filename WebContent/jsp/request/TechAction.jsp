@@ -34,7 +34,7 @@
 	                            %>
 	                            You have pending requests
 	                            	                
-	                    			<input type = "button" id="actionID" name="actionName" value="Accept" onClick="acceptRequest();"/>
+	                    			<input type = "button" id="actionID" name="actionName" class="buttonFormat" value="Accept" onClick="acceptRequest();"/>
 	                            
 	                              <div id="map" style="width: 921px; height: 329px;"></div> 
 
@@ -56,7 +56,7 @@
 	                            else
 	                            {
 	                            %>
-	                            You have no pending requests
+	                            <B style="align: center"> You have no pending requests </B>
 	                            <%
 	                            }
 	                            %>

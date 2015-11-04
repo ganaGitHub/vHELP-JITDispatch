@@ -3,8 +3,8 @@
 .menuFormat {
 	background-color:#FF0000;
 	font-size: medium;
-	text-align: center;
 	font-stretch: wider;
+	text-align: center;
 }
 
 .link {
@@ -30,3 +30,13 @@
 .queryFieldcomboBoxFormat {
 	width:125px;
 }
+
+.buttonFormat {
+	background-color:#FF0000;
+	font-size: medium;
+	font-stretch: wider;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+} 

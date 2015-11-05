@@ -34,7 +34,7 @@
 	</script>
 	<body>
 		<form name="pinForm">
-			<input type="hidden" id="sTechnicianLatLongListID" name="sTechnicianLatLongList" value="<%=technicianLatLongList %>">
+			<input type="text" id="sTechnicianLatLongListID" name="sTechnicianLatLongList" value="<%=technicianLatLongList %>">
 			<input type="hidden" id="technicianLatLongListLengthID" name="technicianLatLongListLengthName" value="<%=technicianLatLongListLength %>">
 			<input type="hidden" id="sUserNameID" name="sUserName" value="<%=userName %>">
 			<input type="hidden" id="userLatLongStrID" name="userLatLongStrName" value="<%=userLatLongStr %>">

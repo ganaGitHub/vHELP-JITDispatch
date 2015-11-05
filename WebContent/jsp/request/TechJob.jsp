@@ -78,7 +78,7 @@
 		});
 		//alert(<%out.write(latlong[2]);%> + "," +<%out.write(latlong[3]);%>);
 		var usercoords = new google.maps.LatLng( <%out.write(latlong[2]);%>,<%out.write(latlong[3]);%>);
-		var usermarker=new google.maps.Marker({map:map, icon:"images/help.png"});
+		var usermarker=new google.maps.Marker({map:map, icon:"images/help1.png"});
 		marker=new google.maps.Marker({map:map, icon:"images/Repair.png"});
 		usermarker.setPosition(usercoords);
 		<% if (request.getAttribute("NOAJAX") == null){ %>

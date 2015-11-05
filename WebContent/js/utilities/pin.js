@@ -92,7 +92,7 @@ function initialize() {
 	if (technicianLatLongListLength == "1")
 	{
 		marker=new google.maps.Marker({map:map, icon:"images/Repair.png"});
-		usermarker=new google.maps.Marker({map:map, icon:"images/help1.png"});
+		usermarker=new google.maps.Marker({map:map, icon:"images/help.png"});
 		var userLatLongStr = document.getElementById("userLatLongStrID").value;
 		var userLatLongStrArray = userLatLongStr.split(",");
 		//alert("userLatLongStr: " + userLatLongStr);
@@ -163,7 +163,7 @@ function addUserMarker() {
     {
                     position: temp_latLng,
                     map: map,
-                    icon: 'images/help1.png',
+                    icon: 'images/help.png',
                     draggable: false
     }));                                          
 }

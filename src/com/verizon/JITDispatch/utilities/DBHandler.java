@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 public class DBHandler {
+	private static Logger logger = Logger.getLogger("JITDispatch");
 	private static DBHandler dbObj = null;
 	private Connection conn = null;
 	private PreparedStatement stmt = null;
@@ -34,10 +37,10 @@ public class DBHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.println("oracle.jdbc.drivers: " + driver);
-		//System.out.println("oracle.jdbc.url: " + url);
-		//System.out.println("oracle.jdbc.userid: " + user);
-		//System.out.println("oracle.jdbc.password: " + pwd);
+		//logger.debug("oracle.jdbc.drivers: " + driver);
+		//logger.debug("oracle.jdbc.url: " + url);
+		//logger.debug("oracle.jdbc.userid: " + user);
+		//logger.debug("oracle.jdbc.password: " + pwd);
 	}
 
 	/**
@@ -46,14 +49,14 @@ public class DBHandler {
 	public static DBHandler getInstance() {
 		if (dbObj == null) {
 			dbObj = new DBHandler();
-			//System.out.println("Creating the instance of DBHandler");
+			//logger.debug("Creating the instance of DBHandler");
 			if (dbObj.createConnection() != true) {
-				//System.out.println("Failed to create data base connection");
+				//logger.debug("Failed to create data base connection");
 				dbObj = null;
 			}
 			else
 			{
-				//System.out.println("Successfully created data base connection");
+				//logger.debug("Successfully created data base connection");
 			}
 		}
 		return dbObj;
@@ -64,7 +67,7 @@ public class DBHandler {
 	 */
 	private boolean createConnection() {
 		try {
-			//System.out.println("Creating the Oracle data base connection");
+			//logger.debug("Creating the Oracle data base connection");
 			// System.setProperty("jdbc.drivers", driver);
 			// DriverManager.registerDriver(new
 			// oracle.jdbc.driver.OracleDriver());
@@ -73,7 +76,7 @@ public class DBHandler {
 			//conn.setTransactionIsolation(conn.TRANSACTION_READ_UNCOMMITTED);
 			return true;
 		} catch (Exception exe) {
-			System.out.println("Exception caught: " + exe.getMessage());
+			logger.debug("Exception caught: " + exe.getMessage());
 			return false;
 		}
 	}
@@ -96,7 +99,7 @@ public class DBHandler {
 			stmt = conn.prepareStatement(query);
 			rs = stmt.executeQuery();
 		} catch (SQLException se) {
-			System.out.println("SQLException: " + se.getMessage());
+			logger.debug("SQLException: " + se.getMessage());
 			throw se;
 		}
 		return rs;
@@ -114,7 +117,7 @@ public class DBHandler {
 			stmt = conn.prepareStatement(query);
 			status = stmt.executeUpdate();
 		} catch (SQLException se) {
-			System.out.println("SQLException: " + se.getMessage());
+			logger.debug("SQLException: " + se.getMessage());
 			throw se;
 		}
 		return status;
@@ -125,7 +128,7 @@ public class DBHandler {
 		try {
 			stmt.close();
 		} catch (SQLException se) {
-			System.out.println("SQLException: " + se.getMessage());
+			logger.debug("SQLException: " + se.getMessage());
 			throw se;
 		}
 	}
@@ -136,7 +139,7 @@ public class DBHandler {
 			conn.close();
 			dbObj = null;			
 		} catch (SQLException se) {
-			System.out.println("SQLException: " + se.getMessage());
+			logger.debug("SQLException: " + se.getMessage());
 			throw se;
 		}
 	}

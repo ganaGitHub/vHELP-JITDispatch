@@ -3,10 +3,13 @@ package com.verizon.JITDispatch.tech.action;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.verizon.JITDispatch.login.model.TechActionModel;
 import com.verizon.JITDispatch.utilities.DBHandler;
 
 public class TechThread implements Runnable {
+	private static Logger logger = Logger.getLogger("JITDispatch");
 	String gtechName;
 	ArrayList gcoords;
 	public TechThread(String techName,ArrayList coords)
@@ -25,8 +28,8 @@ public class TechThread implements Runnable {
 				String[] latlong = ((String)gcoords.get(i)).split(",");
 				String query = "UPDATE TECH_PERSON SET LATITUDE = " + latlong[0] + ", LONGITUDE = " + latlong[1] +
 				" WHERE NAME = '" + gtechName + "'";
-				System.out.println("query: " + query);
-				System.out.println("Adithya "+latlong[0] +latlong[1] );
+				logger.debug("query: " + query);
+				logger.debug("Adithya "+latlong[0] +latlong[1] );
 		
 				try {
 					dbHandler.execDMLQuery(query);
@@ -46,7 +49,7 @@ public class TechThread implements Runnable {
 		
 		String query = "UPDATE TECH_PERSON SET STATUS = 'REACHED'" +
 		" WHERE NAME = '" + gtechName + "'";
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 
 		try {

@@ -4,9 +4,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.verizon.JITDispatch.utilities.DBHandler;
 
 public class CreateRequestModel {
+	private static Logger logger = Logger.getLogger("JITDispatch");
 
 	public void testDBConnection() {
 		DBHandler dbHandler = new DBHandler();
@@ -22,7 +25,7 @@ public class CreateRequestModel {
 				password = rs.getString(2);
 				type = rs.getInt(3);
 
-				System.out.println("userid: " + userid + ", password: " + password + ", type: " + type);
+				logger.debug("userid: " + userid + ", password: " + password + ", type: " + type);
 			}
 
 			dbHandler.closeConnection();
@@ -37,7 +40,7 @@ public class CreateRequestModel {
 
 		DBHandler dbHandler = new DBHandler();
 		String query = "SELECT LATITUDE, LONGITUDE FROM CUSTOMER WHERE NAME='" + userName + "'";
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 		String lattitude;
 		String longitude;
@@ -49,7 +52,7 @@ public class CreateRequestModel {
 				longitude = rs.getString(2);
 				userLatLong[0] = lattitude;
 				userLatLong[1] = longitude;
-				System.out.println("lattitude: " + lattitude + ", longitude: " + longitude);
+				logger.debug("lattitude: " + lattitude + ", longitude: " + longitude);
 			}
 
 			dbHandler.closeConnection();
@@ -79,7 +82,7 @@ public class CreateRequestModel {
 						"(COS(LATITUDE / 57.29577951) * COS(" + lattitude + " / 57.29577951) * " +
 						"COS(" + longitude + " / 57.29577951 - LONGITUDE/ 57.29577951)))) * 1000) < 10000 and STATUS = 'ACTIVE' AND SKILL='" + skill + "'" + 
 						" order by distance";
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 		String name;
 		String lattitudeTemp;
@@ -100,7 +103,7 @@ public class CreateRequestModel {
 				techLatLong[2] = longitudeTemp;
 				techLatLong[3] = distanceTemp;
 				
-				System.out.println("Name: " + name + ", lattitudeTemp: " + lattitudeTemp + ", longitudeTemp: " + longitudeTemp + ", distanceTemp: " + distanceTemp);
+				logger.debug("Name: " + name + ", lattitudeTemp: " + lattitudeTemp + ", longitudeTemp: " + longitudeTemp + ", distanceTemp: " + distanceTemp);
 				
 				technicianLatLongList.add(techLatLong);
 			}
@@ -142,7 +145,7 @@ public class CreateRequestModel {
 			query +=" order by distance";
 		
 		
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 		String name;
 		String lattitudeTemp;
@@ -163,7 +166,7 @@ public class CreateRequestModel {
 				techLatLong[2] = longitudeTemp;
 				techLatLong[3] = distanceTemp;
 				
-				System.out.println("Name: " + name + ", lattitudeTemp: " + lattitudeTemp + ", longitudeTemp: " + longitudeTemp + ", distanceTemp: " + distanceTemp);
+				logger.debug("Name: " + name + ", lattitudeTemp: " + lattitudeTemp + ", longitudeTemp: " + longitudeTemp + ", distanceTemp: " + distanceTemp);
 				
 				technicianLatLongList.add(techLatLong);
 			}
@@ -182,7 +185,7 @@ public class CreateRequestModel {
 		DBHandler dbHandler = new DBHandler();
 		String query = "SELECT TECH_NAME, tp.latitude, tp.longitude, tp.status FROM CUSTOMER CU, TECH_PERSON TP WHERE cu.tech_name=tp.name AND " +
 				"CU.NAME = '" + userName + "' AND JOBREQUEST = 'Y' AND TP.STATUS IN ('ASSIGNED','ACCEPTED','REACHED','PROGRESS')";
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 		String name;
 		String lattitudeTemp;
@@ -205,7 +208,7 @@ public class CreateRequestModel {
 				techLatLong[2] = longitudeTemp;
 				techLatLong[3] = status;
 				
-				System.out.println("Name: " + name + ", lattitudeTemp: " + lattitudeTemp + ", longitudeTemp: " + longitudeTemp+ ", status: " + status);
+				logger.debug("Name: " + name + ", lattitudeTemp: " + lattitudeTemp + ", longitudeTemp: " + longitudeTemp+ ", status: " + status);
 				
 				technicianJobList.add(techLatLong);
 			}
@@ -234,7 +237,7 @@ public class CreateRequestModel {
 		DBHandler dbHandler = new DBHandler();
 		String query = "UPDATE CUSTOMER SET JOBREQUEST = 'Y', TECH_NAME = '" + techName + "', JOBTYPE = '" + issueName + 
 				"' WHERE NAME = '" + userName + "'";
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 		try {
 			dbHandler.execDMLQuery(query);
@@ -250,7 +253,7 @@ public class CreateRequestModel {
 	{
 		DBHandler dbHandler = new DBHandler();
 		String query = "UPDATE TECH_PERSON SET STATUS = 'ASSIGNED', USER_NAME = '" + userName + "' WHERE NAME = '" + techName + "'";
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 		try {
 			dbHandler.execDMLQuery(query);
@@ -268,7 +271,7 @@ public class CreateRequestModel {
 		DBHandler dbHandler = new DBHandler();
 		String query = "SELECT CU.TECH_NAME FROM CUSTOMER CU " +
 				 " where CU.NAME ='" + userName + "'";
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 		try {
 			ResultSet rs = dbHandler.execSelectQuery(query);
@@ -278,7 +281,7 @@ public class CreateRequestModel {
 
 			String query1 = "UPDATE TECH_PERSON SET STATUS = 'ACTIVE', USER_NAME=NULL " +
 					" WHERE NAME = '" + techName + "'";
-					System.out.println("query: " + query1);
+					logger.debug("query: " + query1);
 					
 
 					try {
@@ -290,7 +293,7 @@ public class CreateRequestModel {
 
 					String query2 = "UPDATE CUSTOMER SET TECH_NAME = NULL,JOBTYPE=NULL,JOBREQUEST='N' " +
 							" WHERE NAME = '" + userName + "'";
-							System.out.println("query: " + query2);
+							logger.debug("query: " + query2);
 							
 
 							try {

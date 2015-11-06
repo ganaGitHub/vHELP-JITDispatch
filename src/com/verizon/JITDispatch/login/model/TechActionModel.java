@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -20,6 +21,7 @@ import com.verizon.JITDispatch.tech.action.TechThread;
 import com.verizon.JITDispatch.utilities.DBHandler;
 
 public class TechActionModel{
+	private static Logger logger = Logger.getLogger("JITDispatch");
 	Thread t1=new Thread();
 	public void testDBConnection() {
 		DBHandler dbHandler = new DBHandler();
@@ -35,7 +37,7 @@ public class TechActionModel{
 				password = rs.getString(2);
 				type = rs.getInt(3);
 
-				System.out.println("userid: " + userid + ", password: " + password + ", type: " + type);
+				logger.debug("userid: " + userid + ", password: " + password + ", type: " + type);
 			}
 
 			dbHandler.closeConnection();
@@ -51,7 +53,7 @@ public class TechActionModel{
 		DBHandler dbHandler = new DBHandler();
 		String query = "SELECT TP.STATUS FROM TECH_PERSON TP " +
 				 " where TP.NAME ='" + techName + "'";
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 		try {
 			ResultSet rs = dbHandler.execSelectQuery(query);
@@ -74,7 +76,7 @@ public class TechActionModel{
 		
 		String query = "UPDATE TECH_PERSON SET STATUS = '" + status +"'" +
 		" WHERE NAME = '" + techName + "'";
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 
 		try {
@@ -92,7 +94,7 @@ public class TechActionModel{
 		DBHandler dbHandler = new DBHandler();
 		String query = "SELECT TP.LATITUDE, TP.LONGITUDE, CU.LATITUDE, CU.LONGITUDE FROM TECH_PERSON TP, CUSTOMER CU "
 				+ " where TP.USER_NAME = CU.NAME and TP.NAME='" + techName + "'";
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 		try {
 			ResultSet rs = dbHandler.execSelectQuery(query);
@@ -118,7 +120,7 @@ public class TechActionModel{
 		DBHandler dbHandler = new DBHandler();
 		String query = "SELECT TP.LATITUDE, TP.LONGITUDE, CU.LATITUDE, CU.LONGITUDE FROM TECH_PERSON TP, CUSTOMER CU "
 				+ " where TP.USER_NAME = CU.NAME and TP.STATUS='ASSIGNED'";
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 		try {
 			ResultSet rs = dbHandler.execSelectQuery(query);
@@ -127,8 +129,8 @@ public class TechActionModel{
 				userLatLong[1] = rs.getString(2);
 				userLatLong[2] = rs.getString(3);
 				userLatLong[3] = rs.getString(4);
-				System.out.println("slattitude: " + userLatLong[0] + ", slongitude: " + userLatLong[1]);
-				System.out.println("tlattitude: " + userLatLong[2] + ", tlongitude: " + userLatLong[3]);
+				logger.debug("slattitude: " + userLatLong[0] + ", slongitude: " + userLatLong[1]);
+				logger.debug("tlattitude: " + userLatLong[2] + ", tlongitude: " + userLatLong[3]);
 			}
 
 			dbHandler.closeConnection();
@@ -148,7 +150,7 @@ public class TechActionModel{
 		DBHandler dbHandler = new DBHandler();
 		String query = "UPDATE TECH_PERSON SET STATUS = 'ACCEPTED'" + 
 				" WHERE NAME = '" + techName + "'";
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 		try {
 			dbHandler.execDMLQuery(query);
@@ -171,19 +173,19 @@ public class TechActionModel{
 	
 	public String callURL(String myURL)
 	{
-		System.out.println("Requeted URL:" + myURL);
+		logger.debug("Requeted URL:" + myURL);
 		String response;
 		HttpURLConnection urlConn = null;
 		
 		
 		try {
 			URL url = new URL(myURL);
-			System.out.println("1");
+			logger.debug("1");
 			Proxy proxy = new Proxy(Proxy.Type.HTTP,new InetSocketAddress("proxy.ebiz.verizon.com", 80));
 			urlConn = (HttpURLConnection)url.openConnection(proxy);
-			System.out.println("2");
+			logger.debug("2");
 			urlConn.setRequestMethod("GET");
-			System.out.println("3");
+			logger.debug("3");
 			InputStream is = urlConn.getInputStream();
 			BufferedReader in = new BufferedReader(new InputStreamReader(is));
 			StringBuilder sb = new StringBuilder();
@@ -238,7 +240,7 @@ public class TechActionModel{
 	{
 		
 		try {
-			//System.out.println(jsonobj);
+			//logger.debug(jsonobj);
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonobj);
 			JSONArray routesObj = (JSONArray) jsonObject.get("routes");
@@ -250,7 +252,7 @@ public class TechActionModel{
 				JSONObject innerObj = (JSONObject)ite.next();
 				if (innerObj.containsKey("overview_polyline"))
 				{
-				//	System.out.println("POLY" + innerObj.toString());
+				//	logger.debug("POLY" + innerObj.toString());
 					JSONObject temp = (JSONObject)innerObj.get("overview_polyline");
 					encondedlatlongs = (String) temp.get("points");
 					found = true;
@@ -285,7 +287,7 @@ public class TechActionModel{
 		DBHandler dbHandler = new DBHandler();
 		String query = "SELECT TP.USER_NAME FROM TECH_PERSON TP " +
 				 " where TP.NAME ='" + techName + "'";
-		System.out.println("query: " + query);
+		logger.debug("query: " + query);
 		
 		try {
 			ResultSet rs = dbHandler.execSelectQuery(query);
@@ -295,7 +297,7 @@ public class TechActionModel{
 
 			String query1 = "UPDATE TECH_PERSON SET STATUS = 'ACTIVE', USER_NAME=NULL " +
 					" WHERE NAME = '" + techName + "'";
-					System.out.println("query: " + query1);
+					logger.debug("query: " + query1);
 					
 
 					try {
@@ -307,7 +309,7 @@ public class TechActionModel{
 
 					String query2 = "UPDATE CUSTOMER SET TECH_NAME = NULL,JOBTYPE=NULL,JOBREQUEST='N' " +
 							" WHERE NAME = '" + username + "'";
-							System.out.println("query: " + query2);
+							logger.debug("query: " + query2);
 							
 
 							try {

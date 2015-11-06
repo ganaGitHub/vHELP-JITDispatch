@@ -28,7 +28,7 @@ public class CreateRequestAction  extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	String param = (String) request.getParameter("param");
-    	System.out.println("param: " + param);
+    	logger.debug("param: " + param);
     	
     	if(param.equalsIgnoreCase("init"))
     	{
@@ -57,7 +57,7 @@ public class CreateRequestAction  extends HttpServlet {
 	protected void initialize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = null;
 		try {
-			System.out.println("Redirecting the request to login page");
+			logger.debug("Redirecting the request to login page");
 			HttpSession session = request.getSession();
 			rd = request.getRequestDispatcher("jsp/request/createRequest.jsp");
 			String userName = (String) session.getAttribute("sUserName");
@@ -76,8 +76,8 @@ public class CreateRequestAction  extends HttpServlet {
 			
 			rd.forward(request, response);
 		} catch (Exception e) {
-			System.out.println("Exception occurred while redirecting the request to login page, exception: " + e.toString());
-			System.out.println(e);
+			logger.debug("Exception occurred while redirecting the request to login page, exception: " + e.toString());
+			logger.debug(e);
 			rd = request.getRequestDispatcher("jsp/common/error.jsp?error=Error occurred while redirecting the request to login page!");
 			rd.forward(request, response);
 		}
@@ -86,16 +86,16 @@ public class CreateRequestAction  extends HttpServlet {
 	protected void createRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = null;
 		try {
-			System.out.println("Redirecting the request to login page");
+			logger.debug("Redirecting the request to login page");
 			HttpSession session = request.getSession();
 			String userName = (String) session.getAttribute("sUserName");
 			session.setAttribute("sUserName", userName);
 			
 			//String userName = (String) session.getAttribute("sUserName");
-			System.out.println("userName: " + userName);
+			logger.debug("userName: " + userName);
 			
 			String issueName = (String) request.getParameter("issueName");
-			System.out.println("issueName: " + issueName);
+			logger.debug("issueName: " + issueName);
 			session.setAttribute("sIssueName", issueName);
 			
 			session.setAttribute("issueName", issueName);
@@ -123,11 +123,11 @@ public class CreateRequestAction  extends HttpServlet {
 				technicianLatLongList = createRequestModelObj.getTechnicianLatLongList(issueName, userLatLong, "", "");
 			}
 			
-				System.out.println("technicianLatLongList: " + technicianLatLongList);
+				logger.debug("technicianLatLongList: " + technicianLatLongList);
 				session.setAttribute("technicianLatLongList", technicianLatLongList);
 				
 				int technicianLatLongListLength = technicianLatLongList.size();
-				System.out.println("technicianLatLongListLength: " + technicianLatLongListLength);
+				logger.debug("technicianLatLongListLength: " + technicianLatLongListLength);
 				String technicianLatLongListLengthStr = String.valueOf(technicianLatLongListLength);
 				
 				String technicianLatLongs = "";
@@ -148,7 +148,7 @@ public class CreateRequestAction  extends HttpServlet {
 					}
 				}
 				
-				System.out.println("technicianLatLongs: " + technicianLatLongs);
+				logger.debug("technicianLatLongs: " + technicianLatLongs);
 				session.setAttribute("technicianLatLongListLength", technicianLatLongListLengthStr);
 				session.setAttribute("technicianLatLongList", technicianLatLongs);
 				
@@ -158,8 +158,8 @@ public class CreateRequestAction  extends HttpServlet {
 				rd.forward(request, response);
 				
 		} catch (Exception e) {
-			System.out.println("Exception occurred while redirecting the request to login page, exception: " + e.toString());
-			System.out.println(e);
+			logger.debug("Exception occurred while redirecting the request to login page, exception: " + e.toString());
+			logger.debug(e);
 			rd = request.getRequestDispatcher("jsp/common/error.jsp?error=Error occurred while redirecting the request to login page!");
 			rd.forward(request, response);
 		}
@@ -168,32 +168,32 @@ public class CreateRequestAction  extends HttpServlet {
 	protected void assignRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = null;
 		try {
-			System.out.println("Redirecting the request to login page");
+			logger.debug("Redirecting the request to login page");
 			HttpSession session = request.getSession();
 			
 			String technicianLatLong = (String) session.getAttribute("technicianLatLongList");
 			String[] technicianLatLongList = technicianLatLong.split(",");
 			String techName = technicianLatLongList[0];
-			System.out.println("techName: " + techName);
+			logger.debug("techName: " + techName);
 			
 			String userName = (String) session.getAttribute("sUserName");
-			System.out.println("userName: " + userName);
+			logger.debug("userName: " + userName);
 			
 			String issueName = (String) session.getAttribute("issueName");
-			System.out.println("issueName: " + issueName);
+			logger.debug("issueName: " + issueName);
 			
 			
 			CreateRequestModel createRequestModelObj = new CreateRequestModel();
 			String status = createRequestModelObj.assignRequest(userName, techName, issueName);
-			System.out.println("status: " + status);
+			logger.debug("status: " + status);
 			session.setAttribute("Requestflag", "yes");
 			createRequest(request,response);
 			//rd = request.getRequestDispatcher("jsp/request/createRequest.jsp");
 			// rd = request.getRequestDispatcher("jsp/common/home.jsp");
 			//rd.forward(request, response);
 		} catch (Exception e) {
-			System.out.println("Exception occurred while redirecting the request to login page, exception: " + e.toString());
-			System.out.println(e);
+			logger.debug("Exception occurred while redirecting the request to login page, exception: " + e.toString());
+			logger.debug(e);
 			rd = request.getRequestDispatcher("jsp/common/error.jsp?error=Error occurred while redirecting the request to login page!");
 			rd.forward(request, response);
 		}
@@ -202,7 +202,7 @@ public class CreateRequestAction  extends HttpServlet {
 	protected void cancelRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = null;
 		try {
-			System.out.println("Redirecting the request to JobDone page");
+			logger.debug("Redirecting the request to JobDone page");
 			HttpSession session = request.getSession();
 			String userName = (String) session.getAttribute("sUserName");
 			CreateRequestModel createRequestModelObj = new CreateRequestModel();
@@ -211,24 +211,24 @@ public class CreateRequestAction  extends HttpServlet {
 			createRequest(request,response);			
 			session.setAttribute("LatLongStr", "");
 		} catch (Exception e) {
-			System.out.println("Exception occurred while redirecting the request to login page, exception: " + e.toString());
-			System.out.println(e);
+			logger.debug("Exception occurred while redirecting the request to login page, exception: " + e.toString());
+			logger.debug(e);
 		}
 	} /* End of Request */
 
 	protected void ajaxRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = null;
 		try {
-			System.out.println("Redirecting the request to ajax page");
+			logger.debug("Redirecting the request to ajax page");
 			HttpSession session = request.getSession();
 			String userName = (String) session.getAttribute("sUserName");
 			session.setAttribute("sUserName", userName);
 			
 			//String userName = (String) session.getAttribute("sUserName");
-			System.out.println("userName: " + userName);
+			logger.debug("userName: " + userName);
 			
 			String issueName = (String) request.getParameter("issueName");
-			System.out.println("issueName: " + issueName);
+			logger.debug("issueName: " + issueName);
 			session.setAttribute("sIssueName", issueName);
 			
 			session.setAttribute("issueName", issueName);
@@ -246,7 +246,7 @@ public class CreateRequestAction  extends HttpServlet {
 					 			technicianJobList.get(0)[3].equals("REACHED") ||
 					 			technicianJobList.get(0)[3].equals("PROGRESS") )
 					 	{
-					 		System.out.println("Condition1");
+					 		logger.debug("Condition1");
 					 		session.setAttribute("Requestflag", "yes");
 					 		String techLatLongStr = technicianJobList.get(0)[1] +  "," + technicianJobList.get(0)[2];
 					 		session.setAttribute("techLatLongStr", techLatLongStr);
@@ -261,7 +261,7 @@ public class CreateRequestAction  extends HttpServlet {
 					 	}
 					 	else
 					 	{
-							 System.out.println("Condition1.1");
+							 logger.debug("Condition1.1");
 							 PrintWriter out = response.getWriter();
 							 out.print("STOP");
 					 		
@@ -269,22 +269,22 @@ public class CreateRequestAction  extends HttpServlet {
 				 }
 				 else
 				 {
-					 System.out.println("Condition2");
+					 logger.debug("Condition2");
 					 PrintWriter out = response.getWriter();
 					 out.print("STOP");
 				 }
 			}
 			else
 			{
-				System.out.println("Condition3");
+				logger.debug("Condition3");
 				session.setAttribute("Requestflag", "no");
 				 PrintWriter out = response.getWriter();
 				 out.print("STOP");
 			}		
 				
 		} catch (Exception e) {
-			System.out.println("Exception occurred while redirecting the request to login page, exception: " + e.toString());
-			System.out.println(e);
+			logger.debug("Exception occurred while redirecting the request to login page, exception: " + e.toString());
+			logger.debug(e);
 			rd = request.getRequestDispatcher("jsp/common/error.jsp?error=Error occurred while redirecting the request to login page!");
 			rd.forward(request, response);
 		}

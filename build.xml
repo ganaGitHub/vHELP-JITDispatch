@@ -9,6 +9,19 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
     <property name="source" value="1.7"/>
+	
+	<property name="build.dir" location="WebContent/WEB-INF/classes" />
+	<property name="test.dir" location="tests" />
+	<property name="build.test.dir" location="WebContent/WEB-INF/classes/tests" />
+	<property name="test.report.dir" location="testreport" />
+
+	<!-- Define the classpath which includes the junit.jar and the classes after compiling-->
+	<path id="junit.class.path">
+			<pathelement location="WebContent/WEB-INF/lib/junit-4.11.jar" />
+			<pathelement location="WebContent/WEB-INF/lib/hamcrest-core-1.3.jar" />
+			<pathelement location="${build.dir}" />
+	</path>
+	
     <path id="Web App Libraries.libraryclasspath">
         <pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/log4j.jar"/>
@@ -44,23 +57,48 @@
               	
     <target name="clean">
         <delete dir="WebContent/WEB-INF/classes"/>
-    	 <delete dir="deploy"/>
+    	<delete dir="deploy"/>
+    	<delete dir="${test.report.dir}" />
+
     </target>
               	
     <target name="build" depends="clean">
     	<mkdir dir="WebContent/WEB-INF/classes"/>
+    	<mkdir dir="${build.test.dir}" />
+    	<mkdir dir="${test.report.dir}" />
+
         <javac memoryinitialsize="256M" memorymaximumsize="512M" debug="true" debuglevel="${debuglevel}" destdir="WebContent/WEB-INF/classes" includeantruntime="false" source="${source}" target="${target}" fork="true">
             <src path="src"/>
             <classpath refid="vHELP-JITDispatch.classpath"/>
+        	<classpath refid="junit.class.path" />
         </javac>
     	  	    
+    	<javac srcdir="${test.dir}" destdir="${build.test.dir}">
+    		<classpath refid="junit.class.path" />
+    	</javac>
+
     </target>
 	
-	<target name="war" depends="build">
-		<war destfile="deploy/vHELP-JITDispatch.war"
-		    	  	        basedir="WebContent"
-		    	  	        >
-		  </war>
+	<!-- Run the JUnit Tests -->
+		<!-- Output is XML, could also be plain-->
+	<target name="junit" depends="build">
+			<junit printsummary="on" fork="true" haltonfailure="no">
+				<classpath refid="junit.class.path" />
+				<classpath>
+				    <pathelement location="${build.test.dir}"/>
+				  </classpath>
+				<formatter type="xml" />
+				<batchtest todir="${test.report.dir}">
+					<fileset dir="${test.dir}">
+						<include name="**/*Test*.java" />
+					</fileset>
+				</batchtest>
+			</junit>
+		</target>
+
+	
+	<target name="war" depends="junit">
+		<war destfile="deploy/vHELP-JITDispatch.war" basedir="WebContent"></war>
 	</target>
 
 </project>

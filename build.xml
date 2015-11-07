@@ -5,11 +5,11 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
 <project basedir="." default="war" name="vHELP-JITDispatch">
-    <property environment="env"/>
-    <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.7"/>
-    <property name="source" value="1.7"/>
-	
+	<property environment="env" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.7" />
+	<property name="source" value="1.7" />
+
 	<property name="build.dir" location="WebContent/WEB-INF/classes" />
 	<property name="test.dir" location="tests" />
 	<property name="build.test.dir" location="WebContent/WEB-INF/classes/tests" />
@@ -17,88 +17,86 @@
 
 	<!-- Define the classpath which includes the junit.jar and the classes after compiling-->
 	<path id="junit.class.path">
-			<pathelement location="WebContent/WEB-INF/lib/junit-4.11.jar" />
-			<pathelement location="WebContent/WEB-INF/lib/hamcrest-core-1.3.jar" />
-			<pathelement location="${build.dir}" />
+		<pathelement location="WebContent/WEB-INF/lib/junit-4.11.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/hamcrest-core-1.3.jar" />
+		<pathelement location="${build.dir}" />
 	</path>
-	
-    <path id="Web App Libraries.libraryclasspath">
-        <pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/log4j.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/ojdbc14.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/tools.jar"/>
-    </path>
-    <path id="EAR Libraries.libraryclasspath"/>
-    <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
-        <pathelement location="WebContent/WEB-INF/lib/annotations-api.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/catalina-ant.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/catalina-ha.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/catalina-tribes.jar"/>
-       
-        <pathelement location="WebContent/WEB-INF/lib/ecj-4.2.2.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/el-api.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/jasper-el.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/jasper.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/jsp-api.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/servlet-api.jar"/>
-      
-        <pathelement location="WebContent/WEB-INF/lib/websocket-api.jar"/>
-    </path>
-    <path id="vHELP-JITDispatch.classpath">
-        <pathelement location="build/classes"/>
-        <path refid="Web App Libraries.libraryclasspath"/>
-        <path refid="EAR Libraries.libraryclasspath"/>
-        <pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/log4j.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/ojdbc14.jar"/>
-        <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
-        <pathelement location="WebContent/WEB-INF/lib/tools.jar"/>
-    </path>
-              	
-    <target name="clean">
-        <delete dir="WebContent/WEB-INF/classes"/>
-    	<delete dir="deploy"/>
-    	<delete dir="${test.report.dir}" />
 
-    </target>
-              	
-    <target name="build" depends="clean">
-    	<mkdir dir="WebContent/WEB-INF/classes"/>
-    	<mkdir dir="${build.test.dir}" />
-    	<mkdir dir="${test.report.dir}" />
+	<path id="Web App Libraries.libraryclasspath">
+		<pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/log4j.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/ojdbc14.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/tools.jar" />
+	</path>
+	<path id="EAR Libraries.libraryclasspath" />
+	<path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
+		<pathelement location="WebContent/WEB-INF/lib/annotations-api.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/catalina-ant.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/catalina-ha.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/catalina-tribes.jar" />
 
-        <javac memoryinitialsize="256M" memorymaximumsize="512M" debug="true" debuglevel="${debuglevel}" destdir="WebContent/WEB-INF/classes" includeantruntime="false" source="${source}" target="${target}" fork="true">
-            <src path="src"/>
-            <classpath refid="vHELP-JITDispatch.classpath"/>
-        	<classpath refid="junit.class.path" />
-        </javac>
-    	  	    
-    	<javac srcdir="${test.dir}" destdir="${build.test.dir}">
-    		<classpath refid="junit.class.path" />
-    	</javac>
+		<pathelement location="WebContent/WEB-INF/lib/ecj-4.2.2.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/el-api.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/jasper-el.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/jasper.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/jsp-api.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/servlet-api.jar" />
 
-    </target>
-	
+		<pathelement location="WebContent/WEB-INF/lib/websocket-api.jar" />
+	</path>
+	<path id="vHELP-JITDispatch.classpath">
+		<pathelement location="build/classes" />
+		<path refid="Web App Libraries.libraryclasspath" />
+		<path refid="EAR Libraries.libraryclasspath" />
+		<pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/log4j.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/ojdbc14.jar" />
+		<path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath" />
+		<pathelement location="WebContent/WEB-INF/lib/tools.jar" />
+	</path>
+
+	<target name="clean">
+		<delete dir="WebContent/WEB-INF/classes" />
+		<delete dir="deploy" />
+		<delete dir="${test.report.dir}" />
+	</target>
+
+	<target name="build" depends="clean">
+		<mkdir dir="WebContent/WEB-INF/classes" />
+		<mkdir dir="${build.test.dir}" />
+		<mkdir dir="${test.report.dir}" />
+
+		<javac memoryinitialsize="256M" memorymaximumsize="512M" debug="true" debuglevel="${debuglevel}" destdir="WebContent/WEB-INF/classes" includeantruntime="false" source="${source}" target="${target}" fork="true">
+			<src path="src" />
+			<classpath refid="vHELP-JITDispatch.classpath" />
+			<classpath refid="junit.class.path" />
+		</javac>
+
+		<javac srcdir="${test.dir}" destdir="${build.test.dir}">
+			<classpath refid="junit.class.path" />
+		</javac>
+	</target>
+
 	<!-- Run the JUnit Tests -->
-		<!-- Output is XML, could also be plain-->
+	<!-- Output is XML, could also be plain-->
 	<target name="junit" depends="build">
-			<junit printsummary="on" fork="true" haltonfailure="no">
-				<classpath refid="junit.class.path" />
-				<classpath>
-				    <pathelement location="${build.test.dir}"/>
-				  </classpath>
-				<formatter type="xml" />
-				<batchtest todir="${test.report.dir}">
-					<fileset dir="${test.dir}">
-						<include name="**/*Test*.java" />
-					</fileset>
-				</batchtest>
-			</junit>
-		</target>
+		<junit printsummary="on" fork="true" haltonfailure="no">
+			<classpath refid="junit.class.path" />
+			<classpath>
+				<pathelement location="${build.test.dir}" />
+			</classpath>
+			<formatter type="xml" />
+			<batchtest todir="${test.report.dir}">
+				<fileset dir="${test.dir}">
+					<include name="**/*Test*.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
 
-	
 	<target name="war" depends="junit">
-		<war destfile="deploy/vHELP-JITDispatch.war" basedir="WebContent"></war>
+		<war destfile="deploy/vHELP-JITDispatch.war" basedir="WebContent">
+		</war>
 	</target>
 
 </project>

@@ -267,7 +267,7 @@ public class DBHandlerTest {
 	public void testExecDMLQuery_1()
 		throws Exception {
 		DBHandler fixture = new DBHandler();
-		String query = "";
+		String query = "select * from tab";
 
 		int result = fixture.execDMLQuery(query);
 
@@ -309,7 +309,7 @@ public class DBHandlerTest {
 	public void testExecSelectQuery_1()
 		throws Exception {
 		DBHandler fixture = new DBHandler();
-		String query = "";
+		String query = "select * from tab";
 
 		ResultSet result = fixture.execSelectQuery(query);
 

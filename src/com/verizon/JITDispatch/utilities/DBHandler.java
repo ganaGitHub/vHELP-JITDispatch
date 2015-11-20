@@ -6,10 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// import org.apache.log4j.Logger;
+import org.apache.log4j.Logger;
 
 public class DBHandler {
-	// private static Logger logger = // logger.getLogger("JITDispatch");
+	private static Logger logger = Logger.getLogger("JITDispatch");
 	private static DBHandler dbObj = null;
 	private Connection conn = null;
 	private PreparedStatement stmt = null;
@@ -37,10 +37,10 @@ public class DBHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//// logger.debug("oracle.jdbc.drivers: " + driver);
-		//// logger.debug("oracle.jdbc.url: " + url);
-		//// logger.debug("oracle.jdbc.userid: " + user);
-		//// logger.debug("oracle.jdbc.password: " + pwd);
+		//logger.debug("oracle.jdbc.drivers: " + driver);
+		//logger.debug("oracle.jdbc.url: " + url);
+		//logger.debug("oracle.jdbc.userid: " + user);
+		//logger.debug("oracle.jdbc.password: " + pwd);
 	}
 
 	public int add(int x, int y) {
@@ -57,14 +57,14 @@ public class DBHandler {
 	public static DBHandler getInstance() {
 		if (dbObj == null) {
 			dbObj = new DBHandler();
-			//// logger.debug("Creating the instance of DBHandler");
+			//logger.debug("Creating the instance of DBHandler");
 			if (dbObj.createConnection() != true) {
-				//// logger.debug("Failed to create data base connection");
+				//logger.debug("Failed to create data base connection");
 				dbObj = null;
 			}
 			else
 			{
-				//// logger.debug("Successfully created data base connection");
+				//logger.debug("Successfully created data base connection");
 			}
 		}
 		return dbObj;
@@ -75,7 +75,7 @@ public class DBHandler {
 	 */
 	private boolean createConnection() {
 		try {
-			//// logger.debug("Creating the Oracle data base connection");
+			//logger.debug("Creating the Oracle data base connection");
 			// System.setProperty("jdbc.drivers", driver);
 			// DriverManager.registerDriver(new
 			// oracle.jdbc.driver.OracleDriver());
@@ -107,7 +107,7 @@ public class DBHandler {
 			stmt = conn.prepareStatement(query);
 			rs = stmt.executeQuery();
 		} catch (SQLException se) {
-			// logger.debug("SQLException: " + se.getMessage());
+			logger.debug("SQLException: " + se.getMessage());
 			throw se;
 		}
 		return rs;
@@ -125,7 +125,7 @@ public class DBHandler {
 			stmt = conn.prepareStatement(query);
 			status = stmt.executeUpdate();
 		} catch (SQLException se) {
-			// logger.debug("SQLException: " + se.getMessage());
+			logger.debug("SQLException: " + se.getMessage());
 			throw se;
 		}
 		return status;
@@ -137,7 +137,7 @@ public class DBHandler {
 			if(stmt != null)
 				stmt.close();
 		} catch (SQLException se) {
-			// logger.debug("SQLException: " + se.getMessage());
+			logger.debug("SQLException: " + se.getMessage());
 			throw se;
 		}
 	}
@@ -149,7 +149,7 @@ public class DBHandler {
 				conn.close();
 			dbObj = null;			
 		} catch (SQLException se) {
-			// logger.debug("SQLException: " + se.getMessage());
+			logger.debug("SQLException: " + se.getMessage());
 			throw se;
 		}
 	}

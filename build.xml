@@ -19,6 +19,10 @@
 	<path id="junit.class.path">
 		<pathelement location="WebContent/WEB-INF/lib/junit-4.11.jar" />
 		<pathelement location="WebContent/WEB-INF/lib/hamcrest-core-1.3.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/ojdbc14.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/log4j.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/tools.jar" />
 		<pathelement location="${build.dir}" />
 	</path>
 

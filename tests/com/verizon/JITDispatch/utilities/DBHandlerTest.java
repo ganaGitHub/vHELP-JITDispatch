@@ -504,6 +504,7 @@ public class DBHandlerTest {
 		assertNotNull(result);
 	}
 
+	@Test
 	public void testAdd() {
 		Assert.assertEquals(5, dbHandlerObj.add(3, 2));
 	}

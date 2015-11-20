@@ -45,6 +45,9 @@ public class DBHandler {
 
 	public int add(int x, int y) {
 		System.out.println("x: " + x + ", y: " + y);
+		System.out.println("dbObj: " + dbObj);
+		System.out.println("conn: " + conn);
+		
 		return x + y;
 	}
 	
@@ -131,7 +134,8 @@ public class DBHandler {
 	/** Close the prepareStatement */
 	public void closeStatement() throws SQLException {
 		try {
-			stmt.close();
+			if(stmt != null)
+				stmt.close();
 		} catch (SQLException se) {
 			// logger.debug("SQLException: " + se.getMessage());
 			throw se;
@@ -141,7 +145,8 @@ public class DBHandler {
 	/** Close the Connection */
 	public void closeConnection() throws SQLException {
 		try {
-			conn.close();
+			if(conn != null)
+				conn.close();
 			dbObj = null;			
 		} catch (SQLException se) {
 			// logger.debug("SQLException: " + se.getMessage());

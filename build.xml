@@ -49,8 +49,7 @@
 		<pathelement location="WebContent/WEB-INF/lib/websocket-api.jar" />
 	</path>
 	<path id="vHELP-JITDispatch.classpath">
-		
-		<pathelement location="src/log4j.properties" />
+		<pathelement location="src/" />
 		<pathelement location="build/classes" />
 		<path refid="Web App Libraries.libraryclasspath" />
 		<path refid="EAR Libraries.libraryclasspath" />

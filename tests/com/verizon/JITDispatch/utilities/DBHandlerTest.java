@@ -3,6 +3,9 @@ package com.verizon.JITDispatch.utilities;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import org.junit.*;
+
+import com.verizon.JITDispatch.SampleAdd;
+
 import static org.junit.Assert.*;
 
 /**
@@ -502,8 +505,7 @@ public class DBHandlerTest {
 	}
 
 	public void testAdd() {
-		DBHandler result = new DBHandler();
-		Assert.assertEquals(5, result.add(3, 2));
+		Assert.assertEquals(5, dbHandlerObj.add(3, 2));
 	}
 	
 	/**
@@ -514,9 +516,13 @@ public class DBHandlerTest {
 	 *
 	 * @generatedBy CodePro at 11/17/15 5:18 AM
 	 */
+	
+	private DBHandler dbHandlerObj;
+	
 	@Before
 	public void setUp()
 		throws Exception {
+		dbHandlerObj = new DBHandler();
 		// add additional set up code here
 	}
 
@@ -531,6 +537,7 @@ public class DBHandlerTest {
 	@After
 	public void tearDown()
 		throws Exception {
+		dbHandlerObj = null;
 		// Add additional tear down code here
 	}
 

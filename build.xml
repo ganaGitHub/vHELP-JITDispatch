@@ -23,19 +23,6 @@
 		<pathelement location="WebContent/WEB-INF/lib/log4j.jar" />
 		<pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar" />
 		<pathelement location="WebContent/WEB-INF/lib/tools.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/annotations-api.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/catalina-ant.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/catalina-ha.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/catalina-tribes.jar" />
-
-		<pathelement location="WebContent/WEB-INF/lib/ecj-4.2.2.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/el-api.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/jasper-el.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/jasper.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/jsp-api.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/servlet-api.jar" />
-
-		<pathelement location="WebContent/WEB-INF/lib/websocket-api.jar" />
 		<pathelement location="${build.dir}" />
 	</path>
 

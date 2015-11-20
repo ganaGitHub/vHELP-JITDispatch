@@ -43,6 +43,10 @@ public class DBHandler {
 		//logger.debug("oracle.jdbc.password: " + pwd);
 	}
 
+	public int add(int x, int y) {
+		return x + y;
+	}
+	
 	/**
 	 * Returns DBHandler object.
 	 */

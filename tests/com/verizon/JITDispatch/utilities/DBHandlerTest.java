@@ -501,6 +501,11 @@ public class DBHandlerTest {
 		assertNotNull(result);
 	}
 
+	public void testAdd() {
+		DBHandler result = new DBHandler();
+		Assert.assertEquals(5, result.add(3, 2));
+	}
+	
 	/**
 	 * Perform pre-test initialization.
 	 *
